@@ -47,8 +47,13 @@ class CurrencyServices
     }
 
     public function getDolarHistory($fecha_desde, $fecha_hasta){
-        $dolar_values = DolarHistory::whereBetween('fecha',[$fecha_desde, $fecha_hasta])->get();
+        $dolar_values = DolarHistory::whereBetween('fecha',[$fecha_desde, $fecha_hasta])->orderBy('fecha','desc')->get();
         return $dolar_values;
+    }
+
+    public function getAvailableDolarDates(){
+        $available_dates = DolarHistory::orderBy('fecha','desc')->select('id','fecha')->get();
+        return $available_dates;
     }
 
 }

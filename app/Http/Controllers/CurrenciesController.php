@@ -31,4 +31,21 @@ class CurrenciesController extends Controller
         return response()->json($history, 200);
     }
 
+
+    function getDates(Request $request, CurrencyServices $currencyServices){
+        $currency = $request->route()->parameter('currency');
+
+        $dates = [];
+        switch ($currency){
+            case 'dolar':
+                $dates = $currencyServices->getAvailableDolarDates();
+                break;
+            default:
+                return response("ERROR DE CONSULTA: ${currency} no existe en nuestros registros",400);
+        }
+
+        return response()->json($dates,200);
+
+    }
+
 }
