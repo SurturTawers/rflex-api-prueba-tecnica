@@ -1,6 +1,6 @@
 # rFlex.io-Fluctuación del dólar API
 ```shell
-git clone https/github.com/SurturTawers api
+git clone https://github.com/SurturTawers/rflex-api-prueba-tecnica.git api
 cd api && cp .env.example .env
 ```
 
