@@ -47,7 +47,6 @@ class CurrencyServices
                 $mostRecentValue = (object) $apiSummary[$currency->codigo];
                 $mostRecentValue->fecha = explode('T',$mostRecentValue->fecha)[0];
             }
-            Log::info($mostRecentValue->fecha);
              if($mostRecentValue) DB::table('currencies_summary')
                 ->upsert(['codigo'=>$mostRecentValue->codigo,'fecha'=>$mostRecentValue->fecha, 'valor'=>$mostRecentValue->valor],['codigo']);
         }

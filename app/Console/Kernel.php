@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\StoreCurrencies;
+use App\Console\Commands\StoreDolarHistory;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('store:currencies')->everyFourHours();
+        $schedule->command('store:dolar 2023 --summary')->hourly();
+        $schedule->command('store:dolar 2024 --summary')->hourly();
     }
 
     /**
