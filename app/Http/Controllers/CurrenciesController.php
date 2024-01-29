@@ -48,4 +48,14 @@ class CurrenciesController extends Controller
 
     }
 
+    function getCurrenciesSummary(Request $request, CurrencyServices $currencyServices){
+        $summary = $currencyServices->getCurrenciesSummaries();
+        return response()->json($summary,200);
+    }
+
+    function getAvailableCurrencies(Request $request, CurrencyServices $currencyServices){
+        $currencies = $currencyServices->getAvailableCurrencies();
+        return response()->json($currencies,200);
+    }
+
 }

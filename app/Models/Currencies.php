@@ -10,4 +10,9 @@ class Currencies extends Model
     use HasFactory;
     protected $table = 'currencies';
     public $timestamps = false;
+
+    protected $fillable = [
+        'codigo',
+        'is_active'
+    ];
 }

@@ -20,6 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(CurrenciesController::class)->prefix('currencies')->group(function(){
+    Route::get('/','getAvailableCurrencies');
+    Route::get('/summary','getCurrenciesSummary');
     Route::get('/{currency}','getCurrencyValues');
     Route::get('/{currency}/dates','getDates');
+
 });

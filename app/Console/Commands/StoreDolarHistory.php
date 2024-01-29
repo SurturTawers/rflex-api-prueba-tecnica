@@ -13,7 +13,7 @@ class StoreDolarHistory extends Command
      *
      * @var string
      */
-    protected $signature = 'store:dolar {periodo}';
+    protected $signature = 'store:dolar {periodo?} {--S|summary}';
 
     /**
      * The console command description.
@@ -30,10 +30,12 @@ class StoreDolarHistory extends Command
     public function handle(CurrencyServices $currencyServices)
     {
         $periodo = $this->argument('periodo');
-
-        if(!isset($periodo)) return Command::INVALID;
+        if(!$periodo) $periodo = date("Y");
 
         $currencyServices->storeDolarHistory($periodo);
+
+        if($this->option('summary')) $currencyServices->storeCurrenciesSummary();
+
         return Command::SUCCESS;
     }
 }

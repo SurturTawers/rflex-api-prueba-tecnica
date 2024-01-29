@@ -13,11 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('currencies', function (Blueprint $table) {
+
+        Schema::create('currencies', function (Blueprint $table){
             $table->string('codigo')->primary();
             $table->string('nombre');
             $table->string('unidad_medida');
-            $table->dateTimeTz('fecha_valor_actual_recopilado');
+            $table->boolean('is_active');
+        });
+
+        Schema::create('currencies_summary', function (Blueprint $table) {
+            $table->string('codigo')->primary();
+            $table->foreign('codigo')->references('codigo')->on('currencies');
+            $table->dateTimeTz('fecha');
             $table->double('valor');
         });
     }
@@ -29,6 +36,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('currencies_summary');
         Schema::dropIfExists('currencies');
     }
 };
