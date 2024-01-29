@@ -2,6 +2,9 @@
 ```shell
 git clone https://github.com/SurturTawers/rflex-api-prueba-tecnica.git api
 cd api && cp .env.example .env
+composer install
+php artisan key:generate && php artisan migrate:fresh && php artisan store:currencies && php artisan store:dolar 2023 && php artisan store:dolar 2024
+php artisan serve
 ```
 
 ## Tecnologías
