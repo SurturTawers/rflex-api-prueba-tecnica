@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('currency_history');
+        Schema::dropIfExists('dolar_history');
     }
 };
