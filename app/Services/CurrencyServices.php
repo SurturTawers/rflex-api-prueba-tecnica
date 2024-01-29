@@ -16,7 +16,7 @@ class CurrencyServices
 {
 
     private function getCurrencyHistoryFromApi($currency, $periodo){
-        $apiUrl = "https://mindicador.cl/api/$currency/$periodo";
+        $apiUrl = env('CURRENCY_API_URL')."$currency/$periodo";
 
         $response = Http::get($apiUrl);
         $data = json_decode($response);
@@ -25,7 +25,7 @@ class CurrencyServices
     }
 
     private function getCurrencySummaryFromApi(){
-        $apiUrl = "https://mindicador.cl/api";
+        $apiUrl = env('CURRENCY_API_URL');
 
         $response = Http::get($apiUrl);
         if($response->failed()) return false;
